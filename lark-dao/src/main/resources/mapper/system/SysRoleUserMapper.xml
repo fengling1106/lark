@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<!--   
+    namespace：必须与对应的接口全类名一致  
+    id:必须与对应接口的某个对应的方法名一致       
+ -->  
+ <mapper namespace="com.valen.lark.dao.system.ISysUserRoleDAO">
+	<resultMap id="baseResultMap" type="com.valen.lark.bean.system.SysUserRole">
+	    <result column="userId" property="userId" jdbcType="INTEGER" />
+		<result column="roleId" property="roleId" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="TINYINT" />		
+		<result column="opId" property="opId" jdbcType="INTEGER" />
+		<result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="modifyDate" property="modifyDate" jdbcType="TIMESTAMP" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />	    	
+	</resultMap>
+  	<insert id="create" parameterType="com.valen.lark.bean.system.SysRole">
+ 		insert into sys_user_role(user_id,role_id,state,op_id,create_date,modify_date,remark) values(#{roleId},#{roleName},#{state},#{opId},#{createDate},#{modifyDate},#{remark})
+ 	</insert>
+	
+    <select id="getSysUserRoleByUserId" parameterType="java.util.Map" resultType="com.valen.lark.bean.system.SysUserRole">
+    	select user_id as userId,role_id as roleId,state, op_id as opId, create_date as createDate,modify_date as modifyDate,remark from sys_user_role where user_id=${userId}
+    </select>
+    
+   
+ </mapper>

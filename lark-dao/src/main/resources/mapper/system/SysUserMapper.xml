@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<!--   
+    namespace：必须与对应的接口全类名一致  
+    id:必须与对应接口的某个对应的方法名一致       
+ -->  
+ <mapper namespace="com.valen.lark.dao.system.ISysUserDAO">
+	<resultMap id="baseResultMap" type="com.valen.lark.bean.system.SysUser">
+		<result column="opId" property="opId" jdbcType="INTEGER" />
+		<result column="opName" property="opName" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="TINYINT" />		
+	    <result column="orgId" property="orgId" jdbcType="INTEGER" /> 
+		<result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="modifyDate" property="modifyDate" jdbcType="TIMESTAMP" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />	    	
+	</resultMap>
+  	<insert id="create" parameterType="com.valen.lark.bean.system.SysUser">
+ 		insert into sys_user(user_name,user_password,email,state,create_date,modify_date) values(#{userName},#{userPasswd},#{email},#{state},#{createDate},#{modifyDate})
+ 	</insert>
+	
+    <select id="getSysUserByOpName" parameterType="java.util.Map" resultType="com.valen.lark.bean.system.SysUser">
+    	select op_id as opId,op_name as opName,password,state, org_id as orgId, create_date as createDate,modify_date as modifyDate,remark from sys_user where op_name=${opName}
+    </select>
+
+    <select id="getSysUserMatchOpName" parameterType="java.util.Map" resultMap="baseResultMap">
+    	select op_id as opId,op_name as opName,password,state, org_id as orgId, create_date as createDate,modify_date as modifyDate,remark from sys_user where op_name=${opName}
+    </select>
+    
+    <select id="checkSysUserIsExistByOpName" parameterType="java.util.Map" resultType="int">
+    	select count(1) from sys_user where op_name=${opName}
+    </select>
+
+    <select id="getSysUserAll" resultMap="baseResultMap">
+    	select op_id as opId,op_name as opName,password,state, org_id as orgId, create_date as createDate,modify_date as modifyDate,remark from sys_user
+    </select>
+    
+    <select id="checkSysUserByNameAndPwd" parameterType="java.util.Map" resultType="com.valen.lark.bean.system.SysUser">
+    	select op_id as opId,op_name as opName,password,state, org_id as orgId, create_date as createDate,modify_date as modifyDate,remark from sys_user where op_name=${opName} and password=${passWord}
+    </select>    
+    
+     <select id="getSysUserRoleByOpName" parameterType="java.util.Map" resultType="com.valen.lark.bean.system.SysRole">
+    	select role_id as roleId, role_name as role_name,state, op_id as opId, create_date as createDate,modify_date as modifyDate,remark from sys_role a where a.role_id in(select b.role_id from sys_user_role b, sys_user c where b.user_id=c.op_id and op_name=${opName})
+    </select>          
+ </mapper>

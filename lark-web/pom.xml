@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.valen</groupId>
+    <artifactId>lark-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>com.valen</groupId>
+  <artifactId>lark-web</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>lark-web</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <dubbo-spring-boot>1.0.0</dubbo-spring-boot>
+  </properties>
+  <dependencies> 
+	<!-- 内部模块依赖 -->
+	<dependency>
+		<groupId>${project.groupId}</groupId>
+		<artifactId>lark-iservice</artifactId>
+		<version>${project.version}</version>
+	</dependency>  
+
+    <!-- Spring Boot Dubbo 依赖 -->
+    <dependency>
+        <groupId>io.dubbo.springboot</groupId>
+        <artifactId>spring-boot-starter-dubbo</artifactId>
+        <version>${dubbo-spring-boot}</version>
+    </dependency>
+    	
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <version>1.5.6.RELEASE</version> 
+    </dependency>  
+  </dependencies>
+   <build>
+      <plugins>
+          <plugin>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                  <source>1.8</source>
+                  <target>1.8</target>
+              </configuration>
+          </plugin>
+          <plugin>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-maven-plugin</artifactId>
+          </plugin>
+      </plugins>
+  </build>   
+</project>

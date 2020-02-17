@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<!--   
+    namespace：必须与对应的接口全类名一致  
+    id:必须与对应接口的某个对应的方法名一致       
+ -->  
+ <mapper namespace="com.valen.lark.dao.system.ISysRoleDAO">
+	<resultMap id="baseResultMap" type="com.valen.lark.bean.system.SysRole">
+		<result column="roleId" property="roleId" jdbcType="INTEGER" />
+		<result column="roleName" property="roleName" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="TINYINT" />		
+		<result column="opId" property="opId" jdbcType="INTEGER" />
+		<result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="modifyDate" property="modifyDate" jdbcType="TIMESTAMP" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />	    	
+	</resultMap>
+  	<insert id="create" parameterType="com.valen.lark.bean.system.SysRole">
+ 		insert into sys_role(role_name,role_name,state,op_id,create_date,modify_date,remark) values(#{roleId},#{roleName},#{state},#{opId},#{createDate},#{modifyDate},#{remark})
+ 	</insert>
+	
+    <select id="getSysRoleById" parameterType="java.util.Map" resultType="com.valen.lark.bean.system.SysRole">
+    	select role_id as roleId, role_name as role_name,state, op_id as opId, create_date as createDate,modify_date as modifyDate,remark from sys_role where role_id=${roleId}
+    </select>
+
+    <select id="getSysRoleMatchName" parameterType="java.util.Map" resultType="com.valen.lark.bean.system.SysRole">
+    	select role_id as roleId, role_name as role_name,state, op_id as opId, create_date as createDate,modify_date as modifyDate,remark from sys_role where role_name like ${roleName}
+    </select>
+
+    <select id="getPermissionByRoleId" parameterType="java.lang.Integer" resultType="com.valen.lark.bean.system.SysPermission">
+    	select priv_id as privId,priv_type as privType,priv_name as privName,state, op_id as opId, create_date as createDate,modify_date as modifyDate,remark from sys_permission a where a.priv_id in(select b.priv_id from sys_role_grant b where role_id=6999999);
+    </select>
+    
+    <select id="getSysRoleAll" resultMap="baseResultMap">
+    	select role_id as roleId, role_name as role_name,state, op_id as opId, create_date as createDate,modify_date as modifyDate,remark from sys_role
+    </select>        
+ </mapper>

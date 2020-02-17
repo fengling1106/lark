@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+ <mapper namespace="com.valen.lark.dao.fault.IFaultProcessDAO">
+	<resultMap id="baseResultMap" type="com.valen.lark.bean.fault.FaultProcess">
+		<result column="serNbr" property="serNbr" jdbcType="BIGINT" />
+		<result column="faultId" property="faultId" jdbcType="BIGINT" />
+		<result column="processInfo" property="processInfo" jdbcType="VARCHAR" />		
+		<result column="processTime" property="processTime" jdbcType="TIMESTAMP" />	
+	    <result column="processUser" property="processUser" jdbcType="INTEGER" /> 							
+		<result column="state" property="state" jdbcType="TINYINT" />		
+	    <result column="opId" property="opId" jdbcType="INTEGER" /> 
+		<result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="modifyDate" property="modifyDate" jdbcType="TIMESTAMP" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />	 		   	
+	</resultMap>
+  	<insert id="create" parameterType="com.valen.lark.bean.fault.FaultInfo">
+ 		insert into ft_fault_info(fault_id,fault_user_id,fault_title,fault_desc,fault_grade,fault_type,fault_gen_time,fault_recover_time,is_fault,process_sts,dept,gen_site,result,create_date,modify_date,state,op_id,remark) values(#{userName},#{userPasswd},#{email},#{state},#{createDate},#{modifyDate})
+ 	</insert>
+	
+    <select id="getFaultInfoAll" parameterType="java.util.Map"  resultMap="baseResultMap">
+    	select fault_id as faultId,fault_user_id as faultUserId,fault_title as faultTitle, fault_desc,fault_grade as faultGrade,fault_type as faultType,fault_gen_time as faultGenTime,fault_recover_time as faultRecoverTime,is_fault as isFault ,process_sts as processSts,dept ,gen_site as genSite,result,state, op_id as opId, create_date as createDate,modify_date as modifyDate,remark from ft_fault_info 
+    </select>
+
+    <select id="getFaultInfoByFaultTitle" parameterType="java.util.Map" resultMap="baseResultMap">
+    	select fault_id as faultId,fault_user_id as faultUserId,fault_title as faultTitle, fault_desc,fault_grade as faultGrade,fault_type as faultType,fault_gen_time as faultGenTime,fault_recover_time as faultRecoverTime,is_fault as isFault ,process_sts as processSts,dept ,gen_site as genSite,result,state, op_id as opId, create_date as createDate,modify_date as modifyDate,remark from ft_fault_info where fault_title like ${faultTitle}
+    </select>
+        
+ </mapper>

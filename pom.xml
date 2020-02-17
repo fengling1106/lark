@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.valen</groupId>
+  <artifactId>lark-parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>lark-parent</name>
+  <description>lark-parent</description>
+     <!-- Spring Boot 启动父依赖 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.6.RELEASE</version>
+    </parent> 
+  
+  <modules>
+    <module>lark-utils</module>
+    <module>lark-bean</module>
+    <module>lark-dao</module>
+    <module>lark-iservice</module>
+    <module>lark-service-impl</module>
+    <module>lark-web</module>
+
+    <module>lark-admin</module>
+  </modules>
+  <properties>
+      <log4j.version>1.2.17</log4j.version>
+      <jackson.version>2.8.6</jackson.version>    
+        <mysql-jdbc.version>5.1.40</mysql-jdbc.version>    
+  </properties>    
+  <dependencies>  
+     <dependency>
+         <groupId>log4j</groupId>
+         <artifactId>log4j</artifactId>
+         <version>${log4j.version}</version>
+     </dependency>     
+      <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>  
+     
+</project>
