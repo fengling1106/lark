@@ -22,7 +22,7 @@
 			<div class="header">
 				<div class="display-table" style="width: 100%;">
 					<div class="logo-box display-cell">
-						<div class="logo"><img src="<%=request.getContextPath()%>/img/gmcc-logo.png" width="120" height="38"></div>
+						<div class="logo"><img src="<%=request.getContextPath()%>/img/lejujia-logo.png" width="120" height="38"></div>
 					</div>
 					<div class="display-cell login-status">
 						<img class="user-logo" src="<%=request.getContextPath()%>/img/user.png" />
@@ -152,7 +152,7 @@
 						</shiro:lacksPermission>
 					</shiro:lacksPermission>
 					<div class="copyright txt-align-c">
-						中国移动通信集团贵州有限公司
+						练习册
 					</div>
 				</div>
 			</div>

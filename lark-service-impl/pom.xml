@@ -28,7 +28,12 @@
 		<groupId>${project.groupId}</groupId>
 		<artifactId>lark-dao</artifactId>
 		<version>${project.version}</version>
-	</dependency>	
+	</dependency>
+	<dependency>
+		<groupId>${project.groupId}</groupId>
+		<artifactId>lark-utils</artifactId>
+		<version>${project.version}</version>
+	</dependency>  		
     <!-- Spring Boot Dubbo 依赖 -->
     <dependency>
         <groupId>io.dubbo.springboot</groupId>

@@ -10,9 +10,13 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
 		<title>值班故障查询</title>
+		<link rel="stylesheet" href="/js/layui/css/laydate.css" />			
 		<link rel="stylesheet" href="/js/layui/css/layui.css" />
 		<link rel="stylesheet" href="/css/style.css" />
+		<link rel="stylesheet" href="/css/global-select.css" />		
+		<link rel="stylesheet" href="/css/global.css" />		
 		<link rel="stylesheet" href="/css/duty/fault.css" />		
+		<script type="text/javascript" src="/js/layui/lay/modules/laydate.js"></script>			
 		<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
 		<script type="text/javascript" src="/js/template.js"></script>
 		<script type="text/javascript" src="/js/layui/layui.js"></script>
@@ -28,56 +32,59 @@
 	<body>
 		<div class="content-container">
 			<div class="content-head">
-				故障查询
+			故障查询条件
 			</div>
 			<div class="content-body">
 				<div class="content-body-head">
-					故障编号：
-					<input class="txt-input param-in" data-id="orderCode" type="text" /> 
-					工单状态：
-					<div class="select-group" style="width: 100px;">
-						<div data-val="" data-id="orderType" class="current-option param-in">全部</div>
-						<ul class="option-list">
-							<li class="select-option" data-val="">全部</li>
-							<li class="select-option" data-val="1">待跟进</li>
-							<li class="select-option" data-val="2">已完成</li>
-						</ul>
+					<div class="content-body-head-condition">
+						<label>故障编号：</label>
+						<input type="text" id="in_qry_faultId" /> 
 					</div>
-					<!--<input class="txt-input param-in" data-id="" type="text" />-->
-					发起时间：
-					<div class="layui-input-inline date-sel">
-						<input type="text" class="layui-input txt-input" id="startDate" onfocus="this.blur()">
-					</div>
-					--
-					<div class="layui-input-inline date-sel">
-						<input type="text" class="layui-input txt-input" id="endDate" onfocus="this.blur()">
-					</div>
-					<button class="oc-btn query-btn" id="qryFaultButton">故障查询</button>
 
-					<input class="oc-btn reset-btn" type="button" value="重置" />
+					<div class="content-body-head-condition">
+						<label>工单状态：</label>
+						<select style="width: 200px; border: 1px solid #800040; height: 25px;">
+							<option value ="0">全部</option>
+							<option value ="1">跟进</option>
+							<option value="2">完成</option>
+						</select>				
+					</div>
+					<div class="content-body-head-condition" style="visibility:hidden;">
+		
+					</div>
+					<div class="content-body-head-condition" style="display:block;">
+						<label>开始时间：</label>
+						<input type="text" id="qryStartDate" onfocus="this.blur()">
+					</div>
+				
+					<div class="content-body-head-condition">
+						<label>结束时间：</label>
+						<input type="text" class="" id="qryEndDate" onfocus="this.blur()">
+					</div>
+						
 					
 				</div>
 				<div class="content-body-content">
-					<div class="table-head oc-box">
-						<div class="table-title">工单列表</div>
-						<div class="span1 txt-align-r">
-							<button class="oc-btn other-btn" onclick="getVal()">查询详情</button>
+					<div class="content-body-content-action">
+						<div class="table-title-decription">工单列表</div>
+						<div class="exec-button">
+							<button class="widget-self-btn query" id="qryBtn">查询详情</button>
 						</div>
 					</div>
 					<div class="table-content">
 						<table class="table-list" id="FautlTable">
 							<thead>
 								<tr>
-								    <th>序列号</th>
-									<th style="color:red">故障编号</th>
-									<th style="width:200px;">故障标题</th>
-									<th style="width:200px;">故障类容</th>
-									<th>是否故障</th>
-									<th>故障等级</th>
-									<th>故障类型</th>
-									<th>发生时间</th>
-									<th>恢复时间</th>
-									<th>处理状态</th>
+								    <th style="width:64px; height:32px;">序列号</th>
+									<th style="width:160px; height:32px;">故障编号</th>
+									<th style="width:128px; height:32px;">故障标题</th>
+									<th style="width:288px; height:32px;">故障类容</th>
+									<th style="width:80px; height:32px;">是否故障</th>
+									<th style="width:80px; height:32px;">故障等级</th>
+									<th style="width:96px; height:32px;">故障类型</th>
+									<th style="width:128px; height:32px;">发生时间</th>
+									<th style="width:128px; height:32px;">恢复时间</th>
+									<th style="width:80px; height:32px;">状态</th>
 								</tr>
 							</thead>
 							<tbody id="tableDataList">
@@ -121,33 +128,46 @@
 		</div>
 	</body>
 <script id="tableTem" type="text/javascript">
+laydate.render({
+	  elem: '#qryStartDate' //指定元素
+	  ,type: 'datetime'
+	}
+	
+	);
+laydate.render({
+	  elem: '#qryEndDate' //指定元素
+	  ,type: 'datetime'
+	}
+	
+	);
+
 		var params = {};
 		var result2;
 		$(function(){
-	    	$("button").bind("click",function(){
+	    	$("#qryBtn").bind("click",function(){
 		    	JavaService.postJsonService("/fault/queryDetailAll",params,
 		    			function(result){
 		    				//alert(result);
 		    				$("#FautlTable tbody").html('');
 		    				result2=result;
 		    				if(jQuery.isArray(result)){
-		    					var i=0;
-		    					while(result[i]){
+		    					var i=0,j=0;
+		    					while(result[i] && i<9){
 		    						//$("#aaa").text(result[i].faultTitle);
-		    						
+		    						j=i+1;
 		    						var tdHead="<tr>";
 		    						var tdEnd="</tr>";
-		    						var sortId="<td>"+i+"</td>";
-									var faultId="<td>"+result[i].faultId+"</td>";
-									var faultTitle="<td style=\"width:200px;display:inline-block;\">"+result[i].faultTitle+"</td>";
-									var faultDesc="<td style=\"width:200px;display:inline-block;\">"+result[i].faultDesc+"</td>";
-									var isFault="<td>"+result[i].isFault+"</td>";
-									var faultGrade="<td>"+result[i].faultGrade+"</td>";	
-									var faultType="<td>"+result[i].faultType+"</td>";	
-									var faultGenTime="<td>"+timeStamp2Date(result[i].faultGenTime)+"</td>";	
-									var faultRecoverTime="<td>"+timeStamp2Date(result[i].faultRecoverTime)+"</td>";	
-									var processSts="<td>"+EnumPara("ENUM_ProcessSts",result[i].processSts)+"</td>";												
-									var record=tdHead+sortId+faultId+faultTitle+faultDesc+isFault+faultGrade+faultType+faultGenTime+faultRecoverTime+processSts+tdEnd;
+		    						var sortId="<td style=\"width:64px;\">"+j+"</td>";
+									var faultId="<td style=\"width:160px;\">"+result[i].faultId+"</td>";
+									var faultTitle="<td style=\"width:128px;\">"+result[i].faultTitle+"</td>";
+									var faultDesc="<td style=\"width:288px;\">"+result[i].faultDesc+"</td>";
+									var isFault="<td style=\"width:80px;\">"+EnumPara("ENUM_IsFault",result[i].isFault)+"</td>";
+									var faultGrade="<td style=\"width:80px;\">"+result[i].faultGrade+"</td>";	
+									var faultType="<td style=\"width:96px;\">"+result[i].faultType+"</td>";	
+									var startTime="<td style=\"width:128px;\">"+timeStamp2Date(result[i].startTime)+"</td>";	
+									var endTime="<td style=\"width:128px;\">"+timeStamp2Date(result[i].entTime)+"</td>";	
+									var processSts="<td style=\"width:80px;\">"+EnumPara("ENUM_ProcessSts",result[i].processSts)+"</td>";												
+									var record=tdHead+sortId+faultId+faultTitle+faultDesc+isFault+faultGrade+faultType+startTime+endTime+processSts+tdEnd;
 									$("#tableDataList").append(record);
 									i++;
 		    					}
@@ -168,7 +188,7 @@
 	    		var j=0;
 		    	while(result2[j]){
 		    		//$("#faultId").val(result2[j].faultId);
-		    		if (result2[j].faultId == $(this).children('td').eq(0).text())
+		    		if (result2[j].faultId == $(this).children('td').eq(1).text())
 		    			{
 		    				$("#faultId").val(result2[j].faultId);
 		    				$("#faultTitle").val(result2[j].faultTitle);

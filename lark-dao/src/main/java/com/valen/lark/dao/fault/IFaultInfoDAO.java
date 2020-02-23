@@ -24,4 +24,7 @@ public interface IFaultInfoDAO extends BaseDAO<FaultInfo> {
 	//查询所有的故障订单
 	public List<FaultInfo> getFaultInfoAll();
 	
+	//增加一条新故障记录
+	public boolean addSingleFaultInfo(FaultInfo faultInfo);
+	
 }

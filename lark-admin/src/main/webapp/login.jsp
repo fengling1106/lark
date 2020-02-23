@@ -54,7 +54,7 @@
 		</div>
 		<!-- 登录页面底部 -->
 		<div class="logFoot">
-			<p class="p1">中国移动通信集团贵州有限公司</p>
+			<p class="p1">乐居家</p>
 		</div>
 		<!-- 登录页面底部end -->
 	</div>

@@ -44,20 +44,22 @@ public class SysUserSV implements ISysUserService {
 		return true;
     }
 	
-	public SysUser loginSystem(String userName, String userPasswd) throws NoSuchAlgorithmException, UnsupportedEncodingException	
+	public SysUser loginSystem(String opName, String passWord) throws NoSuchAlgorithmException, UnsupportedEncodingException	
 	{
 		try{
 	    	Map<String, Object> map=new HashMap<String, Object>();
-			map.put("opName", "\'"+userName+"\'");
-			map.put("passWord", "\'"+userPasswd+"\'");	
-			
+			map.put("opName", "\'"+opName+"\'");
+			map.put("passWord", "\'"+passWord+"\'");
+	    	
 			SysUser user=userDao.checkSysUserByNameAndPwd(map);
 			
 			if(null != user && 1==user.getState())
 			{
+				System.out.println("456");
 				return user;
 			}
 			else{
+				System.out.println("123");
 				return null;
 			}
 			

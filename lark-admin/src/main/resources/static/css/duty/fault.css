@@ -71,3 +71,164 @@
     text-decoration: none;
     color: #2D2C3B;
 }
+
+/**美化dutyFaultManage.jsp**/
+
+
+
+.content-new-fault {
+	display:block;
+	/*table-layout: fixed;*/
+	width: 100%;
+	height: 600px;
+	
+	border: 1px solid #800040;
+	background-color: #ced8ff;
+	
+    /* float:left; */
+     /* left: 50%; */
+     text-align: center;
+	
+	/*background-color: #857a81;*/
+	/*overflow-x:auto;*/
+	/*overflow-y:auto;*/
+}
+	
+.content-new-fault-groupbox {
+	display:block;
+	/*table-layout: fixed;*/
+	width: 100%;
+	height: 20%px;
+	position: relative;
+	top: 10px;	
+}	
+	
+.content-new-fault-module {	
+	display:inline-block;
+	width: 380px;
+	height: 30px;
+	border: 1px;
+/* 	border-color:gray */;
+	background-color: #0063c6;
+	font-size: 16px;
+	border: 1px solid red;
+	float: left;
+}	
+	
+.content-new-fault-textarea {	
+	width: 80%;
+	height: 380px;
+	border: 1px solid #ff0080;
+/* 	border-color:gray */;
+	position: relative;
+	top: 10px;	
+	margin:0 auto;	
+	text-align: center;
+	color: red;
+	font-size:16px;
+}
+
+.content-new-fault-submit{	
+	display:block;
+	width: 80%;
+	height: 50px;
+	border: 1px solid blue;
+/* 	border-color:gray */;
+	position: relative;
+	top: 30px;	
+	margin:0 auto;	
+	text-align: center;
+	font-size:16px;
+}
+	
+.content-new-fault-module input{
+	display: inline-block;
+	width: 200px;
+	height: 25px;
+	
+	font-size:16px;
+	
+	border: 1px solid #0000ff;
+	/*border-color: gray;*/
+	
+	/*float: right;*/
+}
+
+.content-new-fault-module label{
+	display: inline-block;
+	width: 135px;
+	height: 25px;
+
+	text-align: right;
+	
+	font-size: 16px;
+	
+	border: 1px;
+}	
+
+.content-new-fault-module select {
+	display: inline-block;
+	border: 1px solid yellow;
+	width: 200px;
+	padding: 0 2%;
+	margin: 0;
+}
+
+.content-new-fault-module option {
+	
+	text-align: center;
+	font-size:16px;
+	
+	border: 1px solid #ff8040;
+	/*border-color: gray;*/
+	
+	/*float: right;*/
+}
+
+
+
+
+.content-new-fault-textarea label{
+	display: block;
+	width: 100%;
+	height: 25px;
+
+	text-align: center;
+	
+	font-size: 16px;
+	
+	border: 1px;
+}	
+
+.submitA {
+	width: 50px;
+	margin: 0px auto;
+	margin-top: 5px;
+	border: 1px solid blue;
+	border-style: outset;
+	background-color: #004080;
+}
+
+.content-new-fault-textarea textarea{
+	border: 1px solid blue;
+	background-color: #f2f2f2;
+}
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}   

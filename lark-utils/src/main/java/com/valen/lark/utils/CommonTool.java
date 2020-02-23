@@ -1,7 +1,9 @@
 package com.valen.lark.utils;
 
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.Base64;
+import java.util.Date;
 
 public class CommonTool {
 
@@ -11,8 +13,9 @@ public class CommonTool {
 	
 	public static void main(String[] args)
 	{
-		System.out.println(enCodedBase64("123456"));
-		System.out.println(decoderBase64(enCodedBase64("fengling")));
+		//System.out.println(enCodedBase64("123456"));
+		//System.out.println(decoderBase64(enCodedBase64("fengling")));
+		System.out.println(getSequence());
 	}
 	//编码Base64
 	public static String enCodedBase64(String str) 
@@ -41,5 +44,21 @@ public class CommonTool {
 		return str;
 	}	
 	
+	
+	//取时间和随机数字做序列号
+	public static String getSequence() {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String strDate = sdf.format(new Date());
+		
+		int rdm =(int)(Math.random() * 900 + 100);
+		Integer integer = new Integer(rdm);
+		
+		String strSeq = strDate+integer.toString();
+		
+		System.out.println("把当前时间转换成字符串：" + strDate);
+		
+		return strSeq;
+	}
 
 }

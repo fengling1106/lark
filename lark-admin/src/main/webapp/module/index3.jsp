@@ -5,7 +5,7 @@
 <!DOCTYPE>
 <html>
 <body>
-<h1>欢迎${user.opName}光临!请选择你的操作:</h1><br>
+<h1>光临!请选择你的操作:</h1><br>
     <ul>
         <shiro:hasPermission name="1000001"><li>增加</li></shiro:hasPermission>
         <shiro:hasPermission name="1000002"><li>删除</li></shiro:hasPermission>

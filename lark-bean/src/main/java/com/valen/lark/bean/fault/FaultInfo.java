@@ -20,10 +20,9 @@ public class FaultInfo implements Serializable {
 	private byte        faultType;          
 	private Timestamp   faultGenTime;      
 	private Timestamp   faultRecoverTime;  
-	private boolean     isFault;            
+	private boolean     isFault; 
 	private byte        procesSts;          
-	private String      dept;                
-	private String      genSite;            
+	private String      dept;  	            
 	private String      reason;    
 	private byte        state;               
 	private int         opId;  	
@@ -49,6 +48,7 @@ public class FaultInfo implements Serializable {
 	{
 		return this.faultUserId;
 	}
+	
 	
 	//
 	public void setFaultTitle(String faultTitle)	
@@ -118,6 +118,7 @@ public class FaultInfo implements Serializable {
 	{
 		return this.isFault;
 	}	
+
 	
 	//
 	public void setProcessSts(byte procesSts)	
@@ -132,20 +133,11 @@ public class FaultInfo implements Serializable {
 	//
 	public void setDept(String dept)	
 	{
-		this.dept =  dept;
+		this.dept = dept;
 	}
-	public String getDept()
+	public String getSloveDept()
 	{
 		return this.dept;
-	}		
-	//
-	public void setGenSite(String genSite)	
-	{
-		this.genSite =  genSite;
-	}
-	public String getGenSite()
-	{
-		return this.genSite;
 	}		
 	
 	//
