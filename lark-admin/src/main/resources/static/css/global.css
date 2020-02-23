@@ -1,0 +1,107 @@
+@charset "UTF-8";
+
+/*时间控件*/
+.widget-box-datetime{
+	display: inline-block;
+	width: 100px;
+	border: 1px solid #800040; 
+	height: 30px;
+}
+	
+.widget-box-datetime label{
+	display: inline-block;
+	width: 80px;
+	height: 25px;
+
+	text-align: right;
+	font-size: 14px;
+	border: 1px;	
+}	
+
+
+.content-body-head-condition {
+	display:inline-block;
+	width: 380px;
+	height: 30px;
+	border: 1px;
+   /* 	border-color:gray */; 
+	background-color: #ffffff;
+	font-size: 16px;
+	border: 1px solid #ffffff;
+	float: left; 
+	
+	margin: 1px 5px 2px 2px;
+	     
+}
+
+.content-body-head-condition label {
+	display: inline-block;
+	width: 135px;
+	height: 25px;
+	text-align: right;
+	font-size: 16px;
+	border: 1px; 
+	margin: 0px 2px 0px 2px; 	
+}
+
+.content-body-head-condition input {
+	display: inline-block;
+	width: 200px;
+	height: 25px;
+	font-size:16px;
+	border: 1px solid #9d9dff;
+	/*border-color: gray;*/
+	margin: 0px 2px 0px 2px;
+	/*float: right;*/     
+}
+
+
+.content-body-content-action {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 5px;
+    border: 1px solid blue;
+    /*color: #666666; */
+    /*background-color: gray;*/	
+    vertical-align:middle;
+}
+
+.content-body-content-action .exec-button {
+	display: inline-block;	
+	width:  30%;
+	height: 30px;
+	font-size:16px;
+	margin: 2px 2px 2px 2px;
+	float: right;
+	text-align:right;
+}
+
+.content-body-content-action .table-title-decription {
+	display: inline-block;	
+	width:  10%;
+	height: 20px;
+	font-size:14px;
+	font-weight: bold;
+	/* background-color: #7d7dff; */
+	margin: 20px 2px 1px 2px;		
+}
+
+
+
+
+/*全局-按钮样式定义*/
+.widget-self-btn {
+  width:  100px;
+  height: 35px;
+  padding: 2px 2px 2px 2px;
+  /* line-height: 30px; */
+  color: #FFFFFF;
+  border-radius: 4px;
+  cursor: pointer;
+  vertical-align: middle; 
+  margin: 2px 2px 2px 2px;	
+ }
+.query{
+	background: #00CCA2;
+}
+ 
