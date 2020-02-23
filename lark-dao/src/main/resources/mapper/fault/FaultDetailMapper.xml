@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<!--   
+    namespace：必须与对应的接口全类名一致  
+    id:必须与对应接口的某个对应的方法名一致       
+ -->  
+ <mapper namespace="com.valen.lark.dao.fault.IFaultDetailDAO">
+	<resultMap id="baseResultMap" type="com.valen.lark.bean.fault.FaultDetail">
+		<result column="faultId" property="faultId" jdbcType="VARCHAR" />
+		<result column="faultDate" property="faultDate" jdbcType="VARCHAR" />
+		<result column="faultReporter" property="faultReporter" jdbcType="VARCHAR" />	
+		<result column="reporterPhone" property="reporterPhone" jdbcType="VARCHAR" />		
+		<result column="systemName" property="faultSystem" jdbcType="VARCHAR" />	
+		<result column="systemModule" property="faultModule" jdbcType="VARCHAR" />							
+		<result column="faultTitle" property="faultTitle" jdbcType="VARCHAR" />		
+		<result column="faultDesc" property="faultDesc" jdbcType="VARCHAR" />
+		<result column="faultGrade" property="faultGrade" jdbcType="VARCHAR" />
+		<result column="faultType" property="faultType" jdbcType="VARCHAR" />		
+		<result column="startTime" property="startTime" jdbcType="TIMESTAMP" />
+		<result column="endTime" property="endTime" jdbcType="TIMESTAMP" />
+		<result column="isFault" property="isFault" jdbcType="TINYINT"/>
+		<result column="processSts" property="processSts" jdbcType="TINYINT" />
+		<result column="dealDept" property="dealDept" jdbcType="VARCHAR" />
+		<result column="dealMan" property="dealMan" jdbcType="VARCHAR" />		
+		<result column="genSite" property="genSite" jdbcType="VARCHAR" />
+		<result column="eventId" property="eventId" jdbcType="VARCHAR" />		
+		<result column="reason" property="reason" jdbcType="VARCHAR" />	
+		<result column="recorder" property="recorder" jdbcType="VARCHAR" />											
+		<result column="state" property="state" jdbcType="TINYINT" />		
+	    <result column="opId" property="opId" jdbcType="INTEGER" /> 
+		<result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="modifyDate" property="modifyDate" jdbcType="TIMESTAMP" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />	    	
+	</resultMap>
+  	<insert id="insertSingle" parameterType="com.valen.lark.bean.fault.FaultDetail">
+ 		insert into ft_fault_detail_info(fault_id,fault_date,fault_reporter,reporter_phone,system_name,
+ 			system_module,fault_title,fault_desc,fault_grade,fault_type,start_time,end_time,is_fault,
+ 			process_sts,deal_dept,deal_man,gen_site,event_id,reason,recorder,state,op_id,create_date,modify_date,remark) 
+ 			values(#{faultId},#{faultDate},#{faultReporter},#{reporterPhone},#{systemName},#{systemModule},
+ 				#{faultTitle},#{faultDesc},#{faultGrade},#{faultType},#{startTime,jdbcType=TIMESTAMP},#{endTime,jdbcType=TIMESTAMP},
+ 				#{isFault},#{procesSts},#{dealDept},#{dealMan},#{genSite},#{eventId},
+ 				#{reason},#{recorder},#{state},#{opId},#{createDate,jdbcType=TIMESTAMP},#{modifyDate,jdbcType=TIMESTAMP},#{remark})
+ 	</insert>
+	
+    <select id="getFaultDetailInfoAll" parameterType="java.util.Map"  resultMap="baseResultMap">
+    	select fault_id as faultId,fault_date as faultDate,fault_title as faultTitle, fault_desc as faultDesc,fault_grade as faultGrade,fault_type as faultType,start_time as startTime,end_time as endTime,is_fault as isFault ,process_sts as processSts,deal_dept as dealDept ,gen_site as genSite,reason,state, op_id as opId, create_date as createDate,modify_date as modifyDate,remark from ft_fault_detail_info 
+    </select>
+
+    <select id="getFaultDetailInfoByFaultTitle" parameterType="java.util.Map" resultMap="baseResultMap">
+    	select fault_id as faultId,fault_date as faultDate,fault_title as faultTitle, fault_desc as faultDesc,fault_grade as faultGrade,fault_type as faultType,start_time as startTime,end_time as endTime,is_fault as isFault ,process_sts as processSts,deal_dept as dealDept ,gen_site as genSite,reason,state, op_id as opId, create_date as createDate,modify_date as modifyDate,remark from ft_fault_detail_info where fault_title like ${faultTitle}
+    </select>
+        
+ </mapper>
